@@ -57,18 +57,6 @@
 				"description": "URL to a Krustlet release archive."
 			}
 		},
-		"servicePrincipalClientId": {
-			"type": "securestring",
-			"metadata": {
-				"description": "Client ID (used by cloudprovider)"
-			}
-		},
-		"servicePrincipalClientSecret": {
-			"type": "securestring",
-			"metadata": {
-				"description": "The Service Principal Client Secret."
-			}
-		},
 		"virtualMachineSize": {
 			"type": "string",
 			"defaultValue": "Standard_DS2_v2",
@@ -260,8 +248,10 @@
 					"outboundType": "loadBalancer"
 				},
 				"servicePrincipalProfile": {
-					"clientId": "[parameters('servicePrincipalClientId')]",
-					"secret": "[parameters('servicePrincipalClientSecret')]"
+					"clientId": "msi"
+				},
+				"identity": {
+					"type": "SystemAssigned"
 				}
 			}
 		},
